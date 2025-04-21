@@ -1,6 +1,6 @@
 # Orpheus-TTS-Local
 
-A lightweight client for running [Orpheus TTS](https://huggingface.co/canopylabs/orpheus-3b-0.1-ft) locally using the LM Studio API.
+A lightweight client for running [Orpheus TTS](https://huggingface.co/canopylabs/orpheus-3b-0.1-ft) locally using LM Studio API.
 
 ## Features
 
@@ -11,16 +11,16 @@ A lightweight client for running [Orpheus TTS](https://huggingface.co/canopylabs
 
 ## Quick Setup
 
-1. Install [LM Studio](https://lmstudio.ai/).
-2. Download the [Orpheus TTS model (orpheus-3b-0.1-ft-q4_k_m.gguf)](https://huggingface.co/isaiahbjork/orpheus-3b-0.1-ft-Q4_K_M-GGUF) in LM Studio.
-3. Load the Orpheus model in LM Studio.
-4. Start the local server in LM Studio (default: http://127.0.0.1:1234).
+1. Install [LM Studio](https://lmstudio.ai/) 
+2. Download the [Orpheus TTS model (orpheus-3b-0.1-ft-q4_k_m.gguf)](https://huggingface.co/isaiahbjork/orpheus-3b-0.1-ft-Q4_K_M-GGUF) in LM Studio
+3. Load the Orpheus model in LM Studio
+4. Start the local server in LM Studio (default: http://127.0.0.1:1234)
 5. Install dependencies:
-   ```bash
-   python3 -m venv venv
+   
+python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
-   ```
+
 6. Run the script:
    ```bash
    # Using a text string:
@@ -53,7 +53,7 @@ python gguf_orpheus.py \
 
 ## Available Voices
 
-- **tara** - Best overall voice for general use (default)
+- tara - Best overall voice for general use (default)
 - leah
 - jess
 - leo
@@ -63,9 +63,8 @@ python gguf_orpheus.py \
 - zoe
 
 ## Emotion
-
 You can add emotion to the speech by adding the following tags:
-```xml
+xml
 <giggle>
 <laugh>
 <chuckle>
@@ -75,9 +74,8 @@ You can add emotion to the speech by adding the following tags:
 <groan>
 <yawn>
 <gasp>
-```
+
 
 ## License
 
 Apache 2.0
-
