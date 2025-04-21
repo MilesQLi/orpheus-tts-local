@@ -246,13 +246,29 @@ def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description="Orpheus Text-to-Speech using LM Studio API")
     parser.add_argument("--text", type=str, help="Text to convert to speech")
-    parser.add_argument("--voice", type=str, default=DEFAULT_VOICE, help=f"Voice to use (default: {DEFAULT_VOICE})")
+    parser.add_argument(
+        "--text-file",
+        type=argparse.FileType('r', encoding='utf-8'),
+        help="Path to a UTF‑8 text file whose contents will be synthesized"
+    )
+    parser.add_argument(
+        "--voice", type=str, default=DEFAULT_VOICE,
+        help=f"Voice to use (default: {DEFAULT_VOICE})"
+    )
     parser.add_argument("--output", type=str, help="Output WAV file path")
     parser.add_argument("--list-voices", action="store_true", help="List available voices")
-    parser.add_argument("--temperature", type=float, default=TEMPERATURE, help="Temperature for generation")
-    parser.add_argument("--top_p", type=float, default=TOP_P, help="Top-p sampling parameter")
-    parser.add_argument("--repetition_penalty", type=float, default=REPETITION_PENALTY, 
-                       help="Repetition penalty (>=1.1 required for stable generation)")
+    parser.add_argument(
+        "--temperature", type=float, default=TEMPERATURE,
+        help="Temperature for generation"
+    )
+    parser.add_argument(
+        "--top_p", type=float, default=TOP_P,
+        help="Top-p sampling parameter"
+    )
+    parser.add_argument(
+        "--repetition_penalty", type=float, default=REPETITION_PENALTY,
+        help="Repetition penalty (>=1.1 recommended for stable generation)"
+    )
     
     args = parser.parse_args()
     
@@ -260,15 +276,16 @@ def main():
         list_available_voices()
         return
     
-    # Use text from command line or prompt user
-    prompt = args.text
-    if not prompt:
-        if len(sys.argv) > 1 and sys.argv[1] not in ("--voice", "--output", "--temperature", "--top_p", "--repetition_penalty"):
-            prompt = " ".join([arg for arg in sys.argv[1:] if not arg.startswith("--")])
-        else:
-            prompt = input("Enter text to synthesize: ")
-            if not prompt:
-                prompt = "Hello, I am Orpheus, an AI assistant with emotional speech capabilities."
+    # Determine prompt source: file > command-line string > interactive
+    if args.text_file:
+        prompt = args.text_file.read()
+    elif args.text:
+        prompt = args.text
+    else:
+        # interactive fallback
+        prompt = input("Enter text to synthesize: ").strip()
+        if not prompt:
+            prompt = "Hello, I am Orpheus, an AI assistant with emotional speech capabilities."
     
     # Default output file if none provided
     output_file = args.output
