@@ -246,29 +246,16 @@ def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description="Orpheus Text-to-Speech using LM Studio API")
     parser.add_argument("--text", type=str, help="Text to convert to speech")
-    parser.add_argument(
-        "--text-file",
-        type=argparse.FileType('r', encoding='utf-8'),
+    parser.add_argument("--text-file", type=argparse.FileType('r', encoding='utf-8'),
         help="Path to a UTF‑8 text file whose contents will be synthesized"
     )
-    parser.add_argument(
-        "--voice", type=str, default=DEFAULT_VOICE,
-        help=f"Voice to use (default: {DEFAULT_VOICE})"
-    )
+    parser.add_argument("--voice", type=str, default=DEFAULT_VOICE, help=f"Voice to use (default: {DEFAULT_VOICE})")
     parser.add_argument("--output", type=str, help="Output WAV file path")
     parser.add_argument("--list-voices", action="store_true", help="List available voices")
-    parser.add_argument(
-        "--temperature", type=float, default=TEMPERATURE,
-        help="Temperature for generation"
-    )
-    parser.add_argument(
-        "--top_p", type=float, default=TOP_P,
-        help="Top-p sampling parameter"
-    )
-    parser.add_argument(
-        "--repetition_penalty", type=float, default=REPETITION_PENALTY,
-        help="Repetition penalty (>=1.1 recommended for stable generation)"
-    )
+    parser.add_argument("--temperature", type=float, default=TEMPERATURE, help="Temperature for generation")
+    parser.add_argument("--top_p", type=float, default=TOP_P, help="Top-p sampling parameter")
+    parser.add_argument("--repetition_penalty", type=float, default=REPETITION_PENALTY, 
+                       help="Repetition penalty (>=1.1 required for stable generation)")
     
     args = parser.parse_args()
     
