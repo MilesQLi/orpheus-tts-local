@@ -16,13 +16,13 @@ A lightweight client for running [Orpheus TTS](https://huggingface.co/canopylabs
 3. Load the Orpheus model in LM Studio
 4. Start the local server in LM Studio (default: http://127.0.0.1:1234)
 5. Install dependencies:
-   
-python3 -m venv venv
+   ```
+   python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
-
+   ```
 6. Run the script:
-   ```bash
+   ```
    # Using a text string:
    python gguf_orpheus.py --text "Hello, this is a test" --voice tara
 
@@ -32,7 +32,7 @@ python3 -m venv venv
 
 ## Usage
 
-```bash
+```
 python gguf_orpheus.py \
   [--text "Your text here"] \
   [--text-file "path/to/file.txt"] \
@@ -42,14 +42,14 @@ python gguf_orpheus.py \
 
 ### Options
 
-- `--text`: The text to convert to speech (mutually exclusive with `--text-file`).
-- `--text-file`: Path to a UTF-8 text file whose contents will be synthesized.
-- `--voice`: The voice to use (default: tara).
-- `--output`: Output WAV file path (default: auto-generated filename).
-- `--list-voices`: Show available voices.
-- `--temperature`: Temperature for generation (default: 0.6).
-- `--top_p`: Top-p sampling parameter (default: 0.9).
-- `--repetition_penalty`: Repetition penalty (default: 1.1).
+- `--text`: The text to convert to speech
+- `--text-file`: Path to a UTF-8 text file whose contents will be synthesized
+- `--voice`: The voice to use (default: tara)
+- `--output`: Output WAV file path (default: auto-generated filename)
+- `--list-voices`: Show available voices
+- `--temperature`: Temperature for generation (default: 0.6)
+- `--top_p`: Top-p sampling parameter (default: 0.9)
+- `--repetition_penalty`: Repetition penalty (default: 1.1)
 
 ## Available Voices
 
@@ -64,7 +64,7 @@ python gguf_orpheus.py \
 
 ## Emotion
 You can add emotion to the speech by adding the following tags:
-xml
+```xml
 <giggle>
 <laugh>
 <chuckle>
@@ -74,8 +74,9 @@ xml
 <groan>
 <yawn>
 <gasp>
-
+```
 
 ## License
 
 Apache 2.0
+
